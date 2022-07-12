@@ -1,7 +1,7 @@
 <!--
  * @Author: bimga
  * @Date: 2022-07-12 23:12:08
- * @LastEditTime: 2022-07-12 23:55:35
+ * @LastEditTime: 2022-07-13 00:09:03
  * @FilePate: Do not edit
 -->
 <!DOCTYPE html>
@@ -45,7 +45,10 @@
             const geometry = new THREE.BoxGeometry(boxWidth, boxHeight, boxDepth)
 
             // 创建基本材质
-            const material = new THREE.MeshBasicMaterial({color: 0x44aa88})
+            // const material = new THREE.MeshBasicMaterial({color: 0x44aa88})
+
+            // 能接受灯光的材质
+            const material = new THREE.MeshPhongMaterial({color: 0x44aa88})
 
             // 创建网格
             const cube = new THREE.Mesh(geometry, material)
@@ -55,6 +58,13 @@
 
             // 渲染场景和相机
             // renderer.render(scene, camera)
+
+            // 新增平行光
+            const color = '#fff'
+            const intensity = 1
+            const light = new THREE.DirectionalLight(color, intensity)
+            light.position.set(-1, 2, 4)
+            scene.add(light)
 
 
             // 创建一个动画
