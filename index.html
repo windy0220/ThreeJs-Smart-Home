@@ -1,0 +1,67 @@
+<!--
+ * @Author: bimga
+ * @Date: 2022-07-12 23:12:08
+ * @LastEditTime: 2022-07-12 23:53:22
+ * @FilePate: Do not edit
+-->
+<!DOCTYPE html>
+<html lang="cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ThreeJs-Smart-Home</title>
+</head>
+
+<body>
+    <canvas id="c"></canvas>
+
+    <script type="module">
+        import * as THREE from './Three/three.module.js'
+        function main() {
+            const canvas = document.querySelector('#c')
+
+            // 创建WebGL渲染器
+            const renderer = new THREE.WebGLRenderer({canvas})
+
+            // 创建一个透视相机
+            const fov = 75 //视野范围(field of view)的缩写 指垂直方向为75度
+            const aspect = 2 //相机默认值 指画布的宽高比。在默认情况下 画布是300x150像素，所以宽高比为300/150或者说2。
+            const near = 0.1 //near和far 代表近平面和远平面，它们限制了摄像机面朝方向的可绘区域。 任何距离小于或超过这个范围的物体都将被裁剪掉(不绘制)。
+            const far = 5
+            const camera = new THREE.PerspectiveCamera(fov, aspect, near, far)
+
+            // 移动下摄像机位置，要不然看不到原点的图形
+            camera.position.z = 2
+
+            // 创建一个场景
+            const scene = new THREE.Scene()
+
+            // 创建一个立方体
+            const boxWidth = 1
+            const boxHeight = 1
+            const boxDepth = 1
+            const geometry = new THREE.BoxGeometry(boxWidth, boxHeight, boxDepth)
+
+            // 创建基本材质
+            const material = new THREE.MeshBasicMaterial({color: 0x44aa88})
+
+            // 创建网格
+            const cube = new THREE.Mesh(geometry, material)
+
+            // 将立方体添加到场景
+            scene.add(cube)
+
+            // 渲染场景和相机
+            renderer.render(scene, camera)
+        }
+        main()
+
+
+        
+
+    </script>
+</body>
+
+</html>
