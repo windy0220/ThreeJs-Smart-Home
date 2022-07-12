@@ -1,7 +1,7 @@
 <!--
  * @Author: bimga
  * @Date: 2022-07-12 23:12:08
- * @LastEditTime: 2022-07-12 23:53:22
+ * @LastEditTime: 2022-07-12 23:55:35
  * @FilePate: Do not edit
 -->
 <!DOCTYPE html>
@@ -54,7 +54,21 @@
             scene.add(cube)
 
             // 渲染场景和相机
-            renderer.render(scene, camera)
+            // renderer.render(scene, camera)
+
+
+            // 创建一个动画
+            function render(time) {
+                time *= 0.001
+
+                cube.rotation.x = time
+                cube.rotation.y = time
+
+                renderer.render(scene, camera)
+                requestAnimationFrame(render)
+            }
+
+            render()
         }
         main()
 
